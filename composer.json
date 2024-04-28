@@ -1,0 +1,40 @@
+{
+    "name": "digitaltunnel/cart",
+    "description": "A package used to create and manage carts (such as shopping, recently viewed, compared items...) in Laravel application.",
+    "keywords": ["cart", "shoppingcart", "shopping", "laravel"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Digital Tunnel",
+            "email": "hey@digitaltunnel.net"
+        }
+    ],
+    "require": {
+        "php": ">=8.2",
+        "../../../vendor/laravel/framework": "^11.0|^10.0"
+    },
+    "require-dev": {
+        "../../../vendor/phpunit/phpunit": "^10.0|^9.0",
+        "../../../vendor/mockery/mockery": "^1.0",
+        "orchestra/testbench": "^9.0|^8.0"
+    },
+    "autoload": {
+        "files": [
+            "src/Helpers/helpers.php"
+        ],
+        "psr-4": {
+            "DigitalTunnel\\Cart\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "DigitalTunnel\\Cart\\CartServiceProvider"
+            ],
+            "aliases": {
+                "Cart": "DigitalTunnel\\Cart\\Facades\\Cart"
+            }
+        }
+    },
+    "minimum-stability": "stable"
+}
