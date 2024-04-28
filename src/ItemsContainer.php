@@ -134,6 +134,9 @@ class ItemsContainer extends Container
      * @param  string  $itemHash  The unique identifier of item
      * @param  bool  $withEvent  Enable firing the event
      * @return $this
+     *
+     * @throws InvalidHashException
+     * @throws UnknownCreatorException
      */
     public function removeItem(string $itemHash, bool $withEvent = true): static
     {

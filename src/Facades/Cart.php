@@ -2,13 +2,12 @@
 
 namespace DigitalTunnel\Cart\Facades;
 
-use DigitalTunnel\Cart\CartServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * The Cart facade.
  *
- * @mixin CartServiceProvider
+ * @mixin \DigitalTunnel\Cart\Cart
  */
 class Cart extends Facade
 {

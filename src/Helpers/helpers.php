@@ -89,7 +89,7 @@ if (! function_exists('isAssocArray')) {
 
 if (! function_exists('array_intersect_assoc_recursive')) {
     /**
-     * Recursive computes the intersection of two arrays with additional index check.
+     * Recursively computes the intersection of two arrays with additional index check.
      */
     function array_intersect_assoc_recursive(array $array1, array $array2): array
     {
@@ -143,11 +143,9 @@ if (! function_exists('array_diff_assoc_recursive')) {
 
 if (! function_exists('ksort_recursive')) {
     /**
-     * Recursive sort an array by key.
-     *
-     * @param  int  $sort_flags
+     * Recursive sort and array by key.
      */
-    function ksort_recursive(array &$array, $sort_flags = SORT_REGULAR): bool
+    function ksort_recursive(array &$array, int $sort_flags = SORT_REGULAR): bool
     {
         $sortArray = ksort($array, $sort_flags);
 

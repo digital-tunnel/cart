@@ -8,9 +8,6 @@ use Illuminate\Support\Collection;
 
 /**
  * The UseCartable interface.
- *
- *
- * @author  Jackie Do <anhvudo@gmail.com>
  */
 interface UseCartable
 {

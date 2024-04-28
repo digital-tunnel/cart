@@ -19,7 +19,7 @@ return [
     |
     | This setting allows you to specify which carts (by the name) are not for
     | commercial use but used for other purposes such as storing recent viewed
-    | items, compared items... They are have no information regarding money.
+    | items, compared items... They are having no information regarding money.
     |
     */
     'none_commercial_carts' => [
@@ -55,18 +55,17 @@ return [
     |
     | This is the default rules attribute of action when you apply an action
     | into cart or item. The value of this setting shows how to calculate the
-    | amount for the action. For details about the available keys and values ​​of
-    | this setting, please see https://github.com/JackieDo/Laravel-Cart
+    | amount for the action.
     |
     */
     'default_action_rules' => [
-        'enable'               => true,
-        'taxable'              => true,
+        'enable' => true,
+        'taxable' => true,
         'allow_others_disable' => true,
-        'disable_others'       => null,
+        'disable_others' => null,
         'include_calculations' => 'same_group_previous_actions',
-        'max_amount'           => null,
-        'min_amount'           => null,
+        'max_amount' => null,
+        'min_amount' => null,
     ],
 
     /*

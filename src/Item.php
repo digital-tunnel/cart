@@ -67,6 +67,8 @@ class Item implements CartNode
      * The constructor.
      *
      * @param  array  $attributes  The item attributes
+     *
+     * @throws InvalidArgumentException
      */
     public function __construct(array $attributes = [])
     {
@@ -89,6 +91,7 @@ class Item implements CartNode
      * @return $this
      *
      * @throws UnknownCreatorException
+     * @throws InvalidArgumentException
      */
     public function update(array $attributes = [], bool $withEvent = true): static
     {
@@ -272,6 +275,8 @@ class Item implements CartNode
      *
      * @param  array  $attributes  The cart item attributes
      * @return $this;
+     *
+     * @throws InvalidArgumentException
      */
     protected function initAttributes(array $attributes = []): static
     {
@@ -396,7 +401,7 @@ class Item implements CartNode
     /**
      * Return the action container.
      */
-    protected function getActionsContainer(): ActionsContainer
+    protected function getActionsContainer(): ActionsContainer|Collection
     {
         if ($this->inCommercialCart) {
             return $this->appliedActions;

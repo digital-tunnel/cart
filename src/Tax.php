@@ -6,6 +6,7 @@ use DigitalTunnel\Cart\Contracts\CartNode;
 use DigitalTunnel\Cart\Exceptions\InvalidArgumentException;
 use DigitalTunnel\Cart\Exceptions\UnknownCreatorException;
 use DigitalTunnel\Cart\Traits\CanBeCartNode;
+use Exception;
 use Illuminate\Support\Arr;
 
 /**
@@ -56,7 +57,7 @@ class Tax implements CartNode
      * @param  bool  $withEvent  Enable firing the event
      * @return $this
      *
-     * @throws UnknownCreatorException
+     * @throws UnknownCreatorException|InvalidArgumentException
      */
     public function update(array $attributes = [], bool $withEvent = true): static
     {
@@ -127,7 +128,7 @@ class Tax implements CartNode
             $taxableAmount = $cartInstance->getTaxableAmount();
 
             return $taxableAmount * ($this->getRate() / 100);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return 0;
         }
     }
@@ -137,6 +138,8 @@ class Tax implements CartNode
      *
      * @param  array  $attributes  The tax attributes
      * @return $this
+     *
+     * @throws InvalidArgumentException
      */
     protected function initAttributes(array $attributes = []): static
     {

@@ -4,6 +4,7 @@ namespace DigitalTunnel\Cart;
 
 use Closure;
 use DigitalTunnel\Cart\Exceptions\InvalidArgumentException;
+use DigitalTunnel\Cart\Exceptions\InvalidHashException;
 use DigitalTunnel\Cart\Exceptions\UnknownCreatorException;
 
 /**
@@ -27,7 +28,7 @@ class ActionsContainer extends Container
      * @param  bool  $withEvent  Enable firing the event
      *
      * @throws InvalidArgumentException
-     * @throws UnknownCreatorException
+     * @throws UnknownCreatorException|InvalidHashException
      */
     public function addAction(array $attributes = [], bool $withEvent = true): ?Action
     {
@@ -67,7 +68,7 @@ class ActionsContainer extends Container
      * @param  bool  $withEvent  Enable firing the event
      *
      * @throws InvalidArgumentException
-     * @throws UnknownCreatorException
+     * @throws UnknownCreatorException|InvalidHashException
      */
     public function updateAction(string $actionHash, array $attributes = [], bool $withEvent = true): ?Action
     {
@@ -107,6 +108,8 @@ class ActionsContainer extends Container
      * Get an action in this container by given hash.
      *
      * @param  string  $actionHash  The unique identifier of action
+     *
+     * @throws InvalidHashException
      */
     public function getAction(string $actionHash): Action
     {
@@ -176,7 +179,7 @@ class ActionsContainer extends Container
      * @param  bool  $withEvent  Enable firing the event
      * @return $this
      *
-     * @throws UnknownCreatorException
+     * @throws UnknownCreatorException|InvalidHashException
      */
     public function removeAction(string $actionHash, bool $withEvent = true): static
     {

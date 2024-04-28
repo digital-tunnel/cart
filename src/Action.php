@@ -98,6 +98,8 @@ class Action implements CartNode
 
     /**
      * Get details of the action as a collection.
+     *
+     * @throws UnknownCreatorException
      */
     public function getDetails(): Details
     {
@@ -124,7 +126,7 @@ class Action implements CartNode
     }
 
     /**
-     * Determines which values ​​to filter.
+     * Determines which values to filter.
      */
     public function getFilterValues(): array
     {
@@ -444,6 +446,8 @@ class Action implements CartNode
      *
      * @param  array  $attributes  The action attributes
      * @return $this
+     *
+     * @throws InvalidArgumentException
      */
     protected function initAttributes(array $attributes = []): static
     {

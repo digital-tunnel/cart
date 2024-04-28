@@ -3,6 +3,7 @@
 namespace DigitalTunnel\Cart;
 
 use Closure;
+use DigitalTunnel\Cart\Exceptions\InvalidArgumentException;
 use DigitalTunnel\Cart\Exceptions\InvalidHashException;
 use DigitalTunnel\Cart\Exceptions\UnknownCreatorException;
 
@@ -24,6 +25,10 @@ class TaxesContainer extends Container
      *
      * @param  array  $attributes  The tax attributes
      * @param  bool  $withEvent  Enable firing the event
+     *
+     * @throws InvalidArgumentException
+     * @throws InvalidHashException
+     * @throws UnknownCreatorException
      */
     public function addTax(array $attributes = [], bool $withEvent = true): ?Tax
     {
@@ -61,7 +66,7 @@ class TaxesContainer extends Container
      * @param  array  $attributes  The new attributes
      * @param  bool  $withEvent  Enable firing the event
      *
-     * @throws InvalidHashException|Exceptions\UnknownCreatorException
+     * @throws InvalidHashException|Exceptions\UnknownCreatorException|Exceptions\InvalidArgumentException
      */
     public function updateTax(string $taxHash, array $attributes = [], bool $withEvent = true): ?Tax
     {

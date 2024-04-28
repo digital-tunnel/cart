@@ -6,9 +6,6 @@ use DigitalTunnel\Cart\Cart;
 
 /**
  * The CartNode interface.
- *
- *
- * @author  Jackie Do <anhvudo@gmail.com>
  */
 interface CartNode
 {
@@ -23,17 +20,17 @@ interface CartNode
     public function getParentNode(): object;
 
     /**
-     * Get the cart instance that this node belong to.
+     * Get the cart instance that this node belongs to.
      */
     public function getCart(): Cart;
 
     /**
-     * Determines which values ​​to filter.
+     * Determines which values to filter.
      */
     public function getFilterValues(): array;
 
     /**
-     * Get config of the cart instance thet this node belong to.
+     * Get config of the cart instance thet this node belongs to.
      *
      * @param  null|string  $name  The config name
      * @param  mixed  $default  The return value if the config does not exist

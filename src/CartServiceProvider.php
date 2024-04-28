@@ -6,9 +6,6 @@ use Illuminate\Support\ServiceProvider;
 
 /**
  * The CartServiceProvider class.
- *
- *
- * @author  Digital Tunnel <hey@digitaltunnel.net>
  */
 class CartServiceProvider extends ServiceProvider
 {

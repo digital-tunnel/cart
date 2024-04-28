@@ -4,7 +4,9 @@ namespace DigitalTunnel\Cart;
 
 use DigitalTunnel\Cart\Exceptions\InvalidAssociatedException;
 use DigitalTunnel\Cart\Exceptions\InvalidCartNameException;
+use DigitalTunnel\Cart\Exceptions\InvalidHashException;
 use DigitalTunnel\Cart\Exceptions\InvalidModelException;
+use DigitalTunnel\Cart\Exceptions\UnknownCreatorException;
 use DigitalTunnel\Cart\Traits\CanApplyAction;
 use DigitalTunnel\Cart\Traits\FireEvent;
 use Illuminate\Support\Arr;
@@ -14,9 +16,6 @@ use Illuminate\Support\Str;
  * The Cart class.
  *
  * Used to manage the cart data in session.
- *
- *
- * @author  Jackie Do <anhvudo@gmail.com>
  */
 class Cart
 {
@@ -40,6 +39,8 @@ class Cart
 
     /**
      * Create cart instance.
+     *
+     * @throws InvalidCartNameException
      */
     public function __construct()
     {
@@ -58,6 +59,8 @@ class Cart
      *
      * @param  null|string  $name  The cart name
      * @return $this
+     *
+     * @throws InvalidCartNameException
      */
     public function name(?string $name = null): static
     {
@@ -73,6 +76,8 @@ class Cart
      *
      * @param  null|string  $name  The cart name
      * @return $this
+     *
+     * @throws InvalidCartNameException
      */
     public function newInstance(?string $name = null): static
     {
@@ -356,6 +361,8 @@ class Cart
      *
      * @param  bool  $withEvent  Enable firing the event
      * @return $this
+     *
+     * @throws UnknownCreatorException
      */
     public function clearItems(bool $withEvent = true): static
     {
@@ -368,6 +375,8 @@ class Cart
      * Get an item in the item container.
      *
      * @param  string  $itemHash  The unique identifier of the item
+     *
+     * @throws InvalidHashException
      */
     public function getItem(string $itemHash): Item
     {
@@ -574,6 +583,9 @@ class Cart
      * @param  string  $taxHash  The unique identifire of the tax instance
      * @param  array  $attributes  The new attributes
      * @param  bool  $withEvent  Enable firing the event
+     *
+     * @throws InvalidHashException
+     * @throws UnknownCreatorException
      */
     public function updateTax(string $taxHash, array $attributes = [], bool $withEvent = true): ?Tax
     {
@@ -584,6 +596,8 @@ class Cart
      * Get an applied tax in the tax container of this cart.
      *
      * @param  string  $taxHash  The unique identifire of the tax instance
+     *
+     * @throws InvalidHashException
      */
     public function getTax(string $taxHash): Tax
     {
@@ -632,6 +646,9 @@ class Cart
      * @param  string  $taxHash  The unique identifier of the tax instance
      * @param  bool  $withEvent  Enable firing the event
      * @return $this
+     *
+     * @throws InvalidHashException
+     * @throws UnknownCreatorException
      */
     public function removeTax(string $taxHash, bool $withEvent = true): static
     {
@@ -645,6 +662,8 @@ class Cart
      *
      * @param  bool  $withEvent  Enable firing the event
      * @return $this
+     *
+     * @throws UnknownCreatorException
      */
     public function clearTaxes(bool $withEvent = true): static
     {
@@ -801,6 +820,9 @@ class Cart
      * @param  bool  $withItems  Include details of added items in the result
      * @param  bool  $withActions  Include details of applied actions in the result
      * @param  bool  $withTaxes  Include details of applied taxes in the result
+     *
+     * @throws InvalidAssociatedException
+     * @throws InvalidModelException|InvalidCartNameException
      */
     public function getGroupDetails(?string $groupName = null, bool $withCartsHaveNoItems = false, bool $withItems = true, bool $withActions = true, bool $withTaxes = true): Details
     {
@@ -940,7 +962,7 @@ class Cart
      * @param  bool  $withTaxes  Include details of applied taxes in the result
      *
      * @throws InvalidAssociatedException
-     * @throws InvalidModelException
+     * @throws InvalidModelException|InvalidCartNameException
      */
     protected function groupAnalysic(string $groupName, bool $withCartsHaveNoItems, bool $withItems, bool $withActions, bool $withTaxes, array $moneyAmounts = []): ?Details
     {
