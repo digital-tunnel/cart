@@ -134,6 +134,15 @@ class Tax implements CartNode
     }
 
     /**
+     * Get Tax attributes
+     */
+    public function getAttributes(): array
+    {
+
+        return $this->attributes;
+    }
+
+    /**
      * Initialize the attributes.
      *
      * @param  array  $attributes  The tax attributes

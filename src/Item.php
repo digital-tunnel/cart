@@ -271,6 +271,15 @@ class Item implements CartNode
     }
 
     /**
+     * Get Item attributes
+     */
+    public function getAttributes(): array
+    {
+
+        return $this->attributes;
+    }
+
+    /**
      * Initialize attributes for cart item.
      *
      * @param  array  $attributes  The cart item attributes
